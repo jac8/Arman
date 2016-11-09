@@ -55,7 +55,7 @@ local function get_weather(location)
    local weather = json:decode(b)
    local city = weather.name
    local country = weather.sys.country
-   local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________\n @BeyondTeam :)'
+   local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________\n @HellSudo :)'
    local conditions = 'شرایط فعلی آب و هوا : '
 
    if weather.weather[1].main == 'Clear' then
@@ -79,7 +79,7 @@ local function calc(exp)
    b,c = http.request(url)
    text = nil
   if c == 200 then
-    text = 'Result = '..b..'\n____________________\n @BeyondTeam :)'
+    text = 'Result = '..b..'\n____________________\n @HellSudo :)'
   elseif c == 400 then
     text = b
   else
@@ -249,7 +249,7 @@ end
    if matches[1] == "tr" and is_sudo(msg) then 
      url = https.request('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160119T111342Z.fd6bf13b3590838f.6ce9d8cca4672f0ed24f649c1b502789c9f4687a&format=plain&lang='..URL.escape(matches[2])..'&text='..URL.escape(matches[3]))
      data = json:decode(url)
-   return 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________\n @BeyondTeam :)'
+   return 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________\n @HellSudo :)'
 end
 -----------------------
 if matches[1] == 'short' and is_sudo(msg) then
@@ -274,7 +274,7 @@ end
     
       if matches[1]:lower() == "photo" and is_sudo(msg) then
      redis:get("sticker:photo")
-    send_large_msg(receiver, 'By @BeyondTeam :)', ok_cb, false)
+    send_large_msg(receiver, 'By @HellSudo :)', ok_cb, false)
         load_document(msg.reply_id, toimage, msg)
     end
 end
@@ -288,7 +288,7 @@ end
        end
       if matches[1]:lower() == "sticker" and is_sudo(msg) then
      redis:get("photo:sticker")  
-    send_large_msg(receiver, 'By @BeyondTeam :)', ok_cb, false)
+    send_large_msg(receiver, 'By @HellSudo :)', ok_cb, false)
         load_photo(msg.reply_id, tosticker, msg)
     end
 end
