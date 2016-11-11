@@ -8,7 +8,7 @@ local function clean_msg(extra, suc, result)
   if tonumber(extra.con) == #result then
     send_msg(extra.chatid, ''..#result..' messages were deleted', ok_cb, false)
   else
-    send_msg(extra.chatid, 'Error Deleting messages', ok_cb, false)  
+    send_msg(extra.chatid, 'حذف پیام ها موفقیت امیز نبود.', ok_cb, false)  
 end 
 end
 -----------------------
@@ -127,13 +127,13 @@ function run(msg, matches)
       return 
       end
     if msg.to.type == 'chat' then
-      return  "Only in the Super Group" 
+      return  "فقط برای سوپر گروه" 
       end
     if not is_owner(msg) then 
-      return "You Are Not Allow To clean Msgs!"
+      return "شما نمیتوانید پیام هارا پاک کنید!"
       end
     if tonumber(matches[3]) > 100 or tonumber(matches[3]) < 10 then
-      return "Minimum clean 10 and maximum clean is 100"
+      return "لطفا عددی بین 10 تا 100 وارد کنید."
       end
    get_history(msg.to.peer_id, matches[3] + 1 , clean_msg , { chatid = msg.to.peer_id,con = matches[3]})
    end
@@ -144,7 +144,7 @@ function run(msg, matches)
     if msg.reply_id then
    local name = matches[2]
 load_document(msg.reply_id, saveplug, {msg=msg,name=name})
-        return 'Plugin '..name..' has been saved.'
+        return 'پلاگین '..name..' با موفقیت ذخیره شد.'
     end
 end
 ------------------------
@@ -159,7 +159,7 @@ load_document(msg.reply_id, savefile, {msg=msg,name=name,adress=adress})
       end
       
          if not is_sudo(msg) then
-           return "You Are Not Solid :/"
+           return "شما سودو نیستید."
          end
 end
 ---------------------------
@@ -173,7 +173,7 @@ if matches[1] == "dl" and matches[2] and matches[3] then
   -------------------------
     if matches[1] == 'addplugin' and is_sudo(msg) then
         if not is_sudo(msg) then
-           return "You Are Not Allow To Add Plugin"
+           return "شما اجازه اضافه کردن پلاگین را ندارید."
            end
    name = matches[2]
    text = matches[3]
@@ -187,7 +187,7 @@ end
    --------------------------
       if matches[1] == "dl" and matches[2] == "plugin" and is_sudo(msg) then
      if not is_sudo(msg) then
-    return "You Are Not Allow To Download Plugins!"
+    return "شما اجازه دانلود پلاگین را ندارید."
   end
    receiver = get_receiver(msg)
       send_document(receiver, "./plugins/"..matches[3]..".lua", ok_cb, false)
@@ -213,7 +213,7 @@ end
 if matches[1] == 'time' and is_sudo(msg) then
 local url , res = http.request('http://api.gpmod.ir/time/')
 if res ~= 200 then
- return "No connection"
+ return "اتصال وجود ندارد"
   end
   local colors = {'blue','green','yellow','magenta','Orange','DarkOrange','red'}
   local fonts = {'mathbf','mathit','mathfrak','mathrm'}
@@ -274,7 +274,7 @@ end
     
       if matches[1]:lower() == "photo" and is_sudo(msg) then
      redis:get("sticker:photo")
-    send_large_msg(receiver, 'By @HellSudo :)', ok_cb, false)
+    send_large_msg(receiver, 'عکس/استیکر شما :', ok_cb, false)
         load_document(msg.reply_id, toimage, msg)
     end
 end
@@ -288,17 +288,17 @@ end
        end
       if matches[1]:lower() == "sticker" and is_sudo(msg) then
      redis:get("photo:sticker")  
-    send_large_msg(receiver, 'By @HellSudo :)', ok_cb, false)
+    send_large_msg(receiver, 'عکس/استیکر شما :', ok_cb, false)
         load_photo(msg.reply_id, tosticker, msg)
     end
 end
 ------------------------
 if matches[1] == "delplugin" and is_sudo(msg) then
 	      if not is_sudo(msg) then 
-             return "You Are Not Allow To Delete Plugins!"
+             return "شما اجازه حذف پلاگین را ندارید"
              end 
         io.popen("cd plugins && rm "..matches[2]..".lua")
-        return "Delete plugin successful "
+        return "پلاگین با موفقیت حذف شد. "
      end
      ---------------
      if matches[1] == "sticker" and is_sudo(msg) then 
@@ -332,10 +332,10 @@ return reply_msg(msg.id, text, ok_cb, false)
 if matches[1]:lower() == "markread" and is_sudo(msg) then
      if matches[2] == "on" then
       redis:set("bot:markread", "on")
-      return "Mark read is on now"
+      return "خواندن پیام ها فعال شد."
      elseif matches[2] == "off" then
       redis:del("bot:markread")
-      return "Mark read is off now"
+      return "خواندن پیام ها غیر فعال شد."
      end
   end
      if matches[1] == "photo" and is_sudo(msg) then 
