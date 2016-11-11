@@ -68,7 +68,7 @@ local function list_plugins(only_enabled)
      -- text = text..v..'  '..status..'\n'
     end
   end
-  local text = text.."\nAll Plugins Reloaded\n\n"..nact.." Plugins Enabled\n"..nsum.." Plugins Installed\n\n@HellSudo"
+  local text = text.."\nهمه پلاگین ها بارگذاری مجدد شد.\n\n"..nact.." پلاگین فعال شد\n"..nsum.." پلاگین نصب شده است.\n\n@HellSudo"
 return text
 end
 
@@ -116,7 +116,7 @@ end
 
 local function disable_plugin_on_chat(receiver, plugin)
   if not plugin_exists(plugin) then
-    return "Plugin doesn't exists"
+    return "پلاگین وجود ندارد"
   end
 
   if not _config.disabled_plugin_on_chat then
