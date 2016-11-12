@@ -215,13 +215,13 @@ end
 function create_self( )
   self = {
     names = {
-    "solid",
-    "Solid",
-    "سلید",
-    "سولید",
-    "سعید",
-    "saeed",
-    "Saeed",
+    "دیلان",
+    "دیلی",
+    "Dilan",
+    "Dili",
+    "dili",
+    "dilan",
+    "@hellsudo",
     "Saeid",
     "saeid"
     },
